@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TinDog - Settings</title>
+  <link rel="icon" type="image/png" href="../assets/images/favicon-transparent.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="app-body">
+  <div data-component="../components/admin-header.html"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Main Admin Sidebar -->
+      <div data-component="../components/admin-sidebar.html" class="col-md-3 col-lg-2 d-md-block p-0"></div>
+
+      <!-- Main Content Area -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 main-content">
+        <div class="page-header gradient-background mb-4">
+          <h1 class="h2">Settings</h1>
+          <p class="mb-0">Manage system configurations and preferences.</p>
+        </div>
+
+        <div class="row">
+          <!-- Settings Sidebar Navigation -->
+          <div class="col-md-3 mb-4">
+            <div class="settings-nav-container">
+              <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <button class="nav-link active text-start" id="v-pills-system-tab" data-bs-toggle="pill"
+                  data-bs-target="#v-pills-system" type="button" role="tab">
+                  <i class="bi bi-sliders me-2"></i> System
+                </button>
+                <button class="nav-link text-start" id="v-pills-security-tab" data-bs-toggle="pill"
+                  data-bs-target="#v-pills-security" type="button" role="tab">
+                  <i class="bi bi-shield-lock me-2"></i> Security
+                </button>
+                <button class="nav-link text-start" id="v-pills-appearance-tab" data-bs-toggle="pill"
+                  data-bs-target="#v-pills-appearance" type="button" role="tab">
+                  <i class="bi bi-palette me-2"></i> Appearance
+                </button>
+                <button class="nav-link text-start" id="v-pills-account-tab" data-bs-toggle="pill"
+                  data-bs-target="#v-pills-account" type="button" role="tab">
+                  <i class="bi bi-person-badge me-2"></i> Account
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Settings Content -->
+          <div class="col-md-9">
+            <div class="card settings-card shadow-sm">
+              <div class="card-body p-4">
+                <div class="tab-content" id="v-pills-tabContent">
+                  <!-- System Settings -->
+                  <div class="tab-pane fade show active" id="v-pills-system" role="tabpanel">
+                    <h4 class="settings-pane-title mb-3">System Configuration</h4>
+                    <p class="text-muted mb-4">Manage global system behavior.</p>
+
+                    <div class="form-check form-switch mb-4">
+                      <input class="form-check-input" type="checkbox" role="switch" id="maintenance_mode"
+                        data-setting="maintenance_mode" />
+                      <label class="form-check-label fw-bold" for="maintenance_mode">Maintenance Mode</label>
+                      <p class="small text-muted mb-0">If enabled, only admins can access the site.</p>
+                    </div>
+
+                    <div class="form-check form-switch mb-4">
+                      <input class="form-check-input" type="checkbox" role="switch" id="allow_registration"
+                        data-setting="allow_registration" />
+                      <label class="form-check-label fw-bold" for="allow_registration">Allow User Registration</label>
+                      <p class="small text-muted mb-0">If disabled, new users cannot sign up.</p>
+                    </div>
+
+                    <button class="btn btn-tindog-primary" id="saveSystemSettingsBtn">Save Changes</button>
+                  </div>
+
+                  <!-- Security Settings -->
+                  <div class="tab-pane fade" id="v-pills-security" role="tabpanel">
+                    <h4 class="settings-pane-title mb-3">Security Settings</h4>
+                    <p class="text-muted mb-4">Configure automated security measures.</p>
+
+                    <div class="mb-4">
+                      <label for="auto_ban_threshold" class="form-label fw-bold">Auto-Ban Threshold (Reports)</label>
+                      <input type="number" class="form-control" id="auto_ban_threshold"
+                        data-setting="auto_ban_threshold" min="1" />
+                      <div class="form-text">Users receiving this many confirmed reports will be automatically banned.
+                      </div>
+                    </div>
+
+                    <button class="btn btn-tindog-primary" id="saveSecuritySettingsBtn">Save Changes</button>
+                  </div>
+
+                  <!-- Appearance Settings -->
+                  <div class="tab-pane fade" id="v-pills-appearance" role="tabpanel">
+                    <h4 class="settings-pane-title mb-3">Appearance</h4>
+                    <p class="text-muted mb-4">Customize your admin dashboard experience.</p>
+                    <label class="form-label fw-bold">Theme</label>
+                    <div class="theme-selector mb-4">
+                      <div class="theme-option active" data-theme="light">
+                        <i class="bi bi-sun-fill"></i> Light
+                      </div>
+                      <div class="theme-option" data-theme="dark">
+                        <i class="bi bi-moon-stars-fill"></i> Dark
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Account Settings -->
+                  <div class="tab-pane fade" id="v-pills-account" role="tabpanel">
+                    <h4 class="settings-pane-title mb-3">Account</h4>
+                    <p class="text-muted mb-4">Manage your admin account.</p>
+                    <div class="alert alert-info">
+                      To update your profile details, please visit the <a href="./profile.html">Profile Page</a>.
+                    </div>
+
+                    <h5 class="mt-4">Change Password</h5>
+                    <form id="changePasswordForm">
+                      <div class="mb-3">
+                        <label class="form-label">Current Password</label>
+                        <input type="password" class="form-control" id="currentPassword" required>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">New Password</label>
+                        <input type="password" class="form-control" id="newPassword" required>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Confirm New Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" required>
+                      </div>
+                      <button type="submit" class="btn btn-tindog-primary">Update Password</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/lib/data-service.js"></script>
+  <script src="../assets/js/utils/component-loader.js"></script>
+  <script src="../assets/js/utils/theme-loader.js"></script>
+  <script src="../assets/js/admin/settings-handler.js"></script>
+</body>
+
+</html>
